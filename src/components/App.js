@@ -1,28 +1,29 @@
 import React from "react";
 import "../styles/App.css";
 const App = () => {
-  let count = 0;
-  const handleDoubleClick = (event) => {
-    ++count;
-    let singleClickTimer;
-    if (count === 1) {
+  let numClicks = 0;
+  let singleClickTimer;
+  const handleClick = () => {
+    numClicks++;
+    if (numClicks === 1) {
       singleClickTimer = setTimeout(() => {
-        count = 0;
+        numClicks = 0;
         console.log("I was not double clicked");
       }, 400);
-
-      // console.log("I was not double clicked");
-    } else if (count === 2) {
+    } else if (numClicks === 2) {
       clearTimeout(singleClickTimer);
-      count = 0;
+      numClicks = 0;
       console.log("I was double clicked");
     }
   };
+
   return (
     <div id="main">
       <button
         id="dblclick-btn"
-        onDoubleClick={(event) => handleDoubleClick(event)}
+        onClick={(event) => {
+          handleClick(event);
+        }}
       >
         Double click me
       </button>
